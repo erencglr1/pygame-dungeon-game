@@ -139,15 +139,24 @@ def draw_buttons(surface, buttons, font):
 
 def main():
     pygame.init()
-    pygame.mixer.init()
+
+    # Try to initialize audio (fails in Codespaces because there is no sound device)
+    MUSIC_ENABLED = False
+    try:
+        pygame.mixer.init()
+        MUSIC_ENABLED = True
+    except pygame.error:
+        print("Audio device not available, running without sound.")
 
     # Background music
-    try:
-        pygame.mixer.music.load("assets/music.mp3")
-        pygame.mixer.music.set_volume(0.5)
-        pygame.mixer.music.play(-1)
-    except:
-        print("Music could not be loaded.")
+    if MUSIC_ENABLED:
+        try:
+            pygame.mixer.music.load("assets/music.mp3")
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(-1)
+        except pygame.error:
+            print("Music could not be loaded.")
+
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Dungeon Game")
