@@ -72,9 +72,7 @@
         <p><strong>Room:</strong> {{ room }}</p>
         <p><strong>Player:</strong> {{ player.status_text() }}</p>
         {% if enemy %}
-        <p>
-          <strong>Enemy:</strong> {{ enemy.name }} – HP {{ enemy.hp }}
-        </p>
+        <p><strong>Enemy:</strong> {{ enemy.name }} – HP {{ enemy.hp }}</p>
         {% else %}
         <p><strong>Enemy:</strong> none</p>
         {% endif %}

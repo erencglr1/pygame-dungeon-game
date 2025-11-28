@@ -1,4 +1,3 @@
-# app.py
 from __future__ import annotations
 
 from typing import List, Optional
@@ -9,7 +8,7 @@ from game_logic import Character, Enemy, create_random_enemy
 
 app = Flask(__name__)
 
-# ---- VERY SIMPLE GLOBAL STATE (good enough for a demo) ----
+# ---- Very simple global state (ok for single-player demo) ----
 player: Optional[Character] = None
 enemy: Optional[Enemy] = None
 room: int = 0
@@ -52,15 +51,15 @@ def index():
                 add_message(
                     f"+{enemy.reward_gold} gold, +{enemy.reward_xp} XP gained."
                 )
-                # level-up check
+
                 xp_needed = player.level * 20
                 while player.xp >= xp_needed:
                     player.xp -= xp_needed
                     add_message(player.level_up())
                     xp_needed = player.level * 20
+
                 enemy = None
             else:
-                # enemy counter-attack
                 dmg = max(1, enemy.attack - player.defense)
                 player.hp -= dmg
                 add_message(f"{enemy.name} hits you back for {dmg} damage.")
@@ -83,7 +82,6 @@ def index():
             enemy = None
             return redirect(url_for("index"))
 
-    # template needs current state
     return render_template(
         "index.html",
         player=player,
@@ -94,5 +92,4 @@ def index():
 
 
 if __name__ == "__main__":
-    # for local testing
     app.run(debug=True)
