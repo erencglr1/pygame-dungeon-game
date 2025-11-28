@@ -1,4 +1,4 @@
-📘 Dungeon Adventure – Python RPG (Pygame + Flask Web Version)
+📘 Dungeon Adventure – Python RPG 
 
 Dungeon Adventure is a turn-based RPG game built with Python, featuring both a Pygame desktop edition and a fully playable Flask web version deployed on Railway.
 The project demonstrates clean software architecture, object-oriented design, dependency management via uv, code quality enforcement using ruff, and automated testing with pytest.
