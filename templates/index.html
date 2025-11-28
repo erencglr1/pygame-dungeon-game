@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dungeon Adventure – Web</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #111;
+        color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        max-width: 700px;
+        width: 100%;
+        margin-top: 40px;
+        background: #1c1c1c;
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid #333;
+      }
+      h1 {
+        text-align: center;
+        color: #f5e663;
+      }
+      .status {
+        margin-bottom: 16px;
+        padding: 12px;
+        background: #222;
+        border-radius: 8px;
+      }
+      .messages {
+        margin-top: 12px;
+        padding: 12px;
+        background: #181818;
+        border-radius: 8px;
+        min-height: 80px;
+      }
+      .messages p {
+        margin: 4px 0;
+      }
+      form {
+        margin-top: 16px;
+      }
+      button {
+        padding: 8px 16px;
+        margin: 4px;
+        border-radius: 8px;
+        border: none;
+        background: #3a86ff;
+        color: white;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: #555;
+      }
+      button.danger {
+        background: #e63946;
+      }
+      button:disabled {
+        background: #444;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dungeon Adventure – Web</h1>
+
+      <div class="status">
+        <p><strong>Room:</strong> {{ room }}</p>
+        <p><strong>Player:</strong> {{ player.status_text() }}</p>
+        {% if enemy %}
+        <p>
+          <strong>Enemy:</strong> {{ enemy.name }} – HP {{ enemy.hp }}
+        </p>
+        {% else %}
+        <p><strong>Enemy:</strong> none</p>
+        {% endif %}
+      </div>
+
+      <div class="messages">
+        {% for msg in messages %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+      </div>
+
+      <form method="post">
+        {% if not enemy %}
+        <button name="action" value="next_room">Enter Next Room</button>
+        {% else %}
+        <button name="action" value="attack">Attack</button>
+        <button name="action" value="heal">Heal (Potion)</button>
+        <button name="action" value="run" class="secondary">Run</button>
+        {% endif %}
+        <button name="action" value="restart" class="danger">Restart</button>
+      </form>
+    </div>
+  </body>
+</html>

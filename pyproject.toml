@@ -1,0 +1,38 @@
+[project]
+name = "pygame-dungeon-game"
+version = "0.1.0"
+description = "A turn-based dungeon RPG built with Python and Pygame."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pygame",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.uv]
+# uv will use this pyproject to manage dependencies
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "I", "B"]
+ignore = [
+    "E203",  # allow black-style slicing
+]
+exclude = [
+    ".git",
+    ".venv",
+    "build",
+    "dist",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
