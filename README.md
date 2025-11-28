@@ -1,57 +1,182 @@
-# Dungeon Adventure – Pygame Project
+📘 Dungeon Adventure – Python RPG (Pygame + Flask Web Version)
 
-Dungeon Adventure is a turn-based RPG mini-game built with **Python** and **Pygame**.  
-The project includes character combat, items, level progression, enemies with unique stats,  
-a shop system, and background music.  
-This game was created as part of a software development assignment.
+Dungeon Adventure is a turn-based RPG game built with Python, featuring both a Pygame desktop edition and a fully playable Flask web version deployed on Railway.
+The project demonstrates clean software architecture, object-oriented design, dependency management via uv, code quality enforcement using ruff, and automated testing with pytest.
 
----
+This repository is structured as a complete, production-ready Python project suitable for academic submissions, portfolio use, and deployment demonstrations.
 
-## 🎮 Features
+🎮 Features
+🕹️ Desktop Version (Pygame)
 
-- Hero with Health, Attack, Defense, Gold, and Experience
-- Multiple enemy types:
-  - Goblin
-  - Skeleton
-  - Wolf
-  - Orc
-- Each enemy has unique stats and its own image
-- Turn-based combat system (Fight / Defend / Run)
-- Shop system:
-  - Buy potions
-  - Upgrade sword
-  - Upgrade armor
-- Leveling system (XP → Level up → Stronger character)
-- Background music (automatically disabled in cloud environments)
-- Fully image-based UI using Pygame
+Character progression (HP, ATK, DEF, Level, XP)
 
----
+Multiple enemy types (Goblin, Skeleton, Wolf, Orc)
 
-## 📁 Project Structure
-pygame-dungeon-game/
-│
-├── dungeon_game.py # Main game file
-├── requirements.txt # Dependencies
-├── README.md # Project documentation
-│
-└── assets/ # Game images & audio
-├── background.png
-├── hero.png
-├── goblin.png
-├── skeleton.png
-├── wolf.png
-├── orc.png
-└── music.mp3
+Turn-based combat system
 
-💡 Notes for Cloud Environments (GitHub Codespaces)
+Random room generation (battle, treasure, traps, shop)
 
-GitHub Codespaces does not support:
--Pygame graphics window
--Audio devices
-Because of this:
--Background music will be automatically disabled
--The game window will not open in the browser
-To test the game visually, run it on a local machine with Python installed.
+Inventory & potion system
 
-Medium link:
-https://medium.com/@erencglr3113/building-a-turn-based-dungeon-game-with-python-pygame-33e6e984b2e3?postPublishedType=initial
+Attack animations
+
+Modular code using dataclasses
+
+🌐 Web Version (Flask – Railway Deployment)
+
+Playable directly in the browser
+
+Buttons for attack, healing, running, restarting
+
+Persistent in-session game state
+
+Clean UI built with basic HTML/CSS
+
+Deployed publicly using Railway + Gunicorn
+
+📁 Project Structure
+project/
+│── dungeon_game.py        # Pygame desktop game
+│── game_logic.py          # Core logic shared by both versions
+│── app.py                 # Flask web application
+│── pyproject.toml         # uv, ruff, pytest configuration
+│── requirements.txt       # (Optional) dependency list for Railway
+│── templates/
+│     └── index.html       # Web UI
+│── assets/
+│     ├── hero.png
+│     ├── goblin.png
+│     ├── skeleton.png
+│     ├── wolf.png
+│     ├── orc.png
+│     ├── background.png
+│     └── music.mp3
+└── tests/
+      └── test_game.py     # pytest unit tests
+
+🧪 Testing
+
+All unit tests are written using pytest, and executed through uv:
+
+uv run pytest
+
+
+The tests cover:
+
+Level-up mechanics
+
+Enemy stat scaling
+
+Base logic verification
+
+Test output example:
+
+2 passed in 0.05s
+
+🔍 Code Quality: ruff
+
+ruff is used for linting and static analysis:
+
+uv run ruff check .
+
+
+Configured via pyproject.toml with:
+
+Line length control
+
+Error/formatting rules
+
+Exclusions
+
+Python target version
+
+📦 Install & Run (Desktop Edition)
+
+1. Install dependencies
+
+Using uv:
+
+uv sync
+
+
+Or using pip:
+
+pip install pygame
+
+
+2. Run the Pygame version
+
+uv run python dungeon_game.py
+
+🌐 Run the Web Version Locally
+uv run python app.py
+
+
+Then open:
+
+http://127.0.0.1:5000/
+
+🚀 Deployment (Railway)
+
+The web version is deployed using Flask + Gunicorn.
+
+Required dependencies:
+flask
+gunicorn
+pygame (for local dev only)
+
+Railway Start Command:
+gunicorn app:app --bind 0.0.0.0:$PORT
+
+Public Networking:
+
+Port: 8000 (or $PORT if Railway auto-detects)
+
+Domain: Railway will auto-generate a public URL
+
+Once deployed, your game is reachable from:
+
+https://pygame-dungeon-game-production.up.railway.app
+
+🏗️ Technologies Used
+
+Python 3.12
+
+Pygame (desktop)
+
+Flask (web)
+
+Gunicorn (production server)
+
+uv (dependency management)
+
+ruff (linting)
+
+pytest (testing)
+
+Railway (deployment)
+
+HTML/CSS (web UI)
+
+🎯 Why This Project Is Valuable
+
+This repository demonstrates:
+
+Full-stack Python: both desktop and web
+
+Clean architecture with shared logic
+
+Professional development workflow
+
+Modern Python tooling
+
+Real deployment to a cloud platform
+
+Academic-level clarity and documentation
+
+It is a strong project example for:
+
+✔ University coursework
+✔ Developer portfolio
+✔ Cloud deployment demonstration
+✔ Python/Pygame learning
